@@ -232,6 +232,15 @@ llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
 
 - **All providers** work with the exact same code - only the LLM initialization changes
 - **Cost considerations:** Cloud providers charge per token, while Ollama is free but requires local compute
+- **Hugging Face downloads:** The default embeddings (`sentence-transformers/all-mpnet-base-v2`) are pulled from the Hugging Face Hub on first run. If you need a mirror, set `HF_ENDPOINT` (example below).
+
+**Hugging Face 镜像（可选）**
+
+如果你所在网络无法访问 Hugging Face，可以在启动前设置镜像地址（项目已支持读取 `HF_ENDPOINT`）：
+
+```bash
+export HF_ENDPOINT="https://hf-mirror.com"
+```
 
 **💡 Recommendation:** Start with Ollama for development, then switch to Google Gemini or OpenAI for production.
 
