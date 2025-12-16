@@ -13,6 +13,56 @@ custom_css = """
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
         background: #0f0f0f !important;
     }
+
+    /* ============================================
+       APP HEADER / FOOTER (CUSTOM BRANDING)
+       ============================================ */
+    #app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 8px 8px 8px;
+        margin-bottom: 8px;
+    }
+
+    #app-header-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    #app-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 6px;
+        border: 1px solid #262626;
+    }
+
+    #app-title {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+    }
+
+    #app-company {
+        color: #a3a3a3;
+        font-size: 13px;
+        margin-top: 2px;
+    }
+
+    #app-footer {
+        margin-top: 14px;
+        padding: 10px 8px 18px 8px;
+        color: #737373;
+        font-size: 12px;
+        text-align: center;
+        border-top: 1px solid #262626;
+    }
     
     /* ============================================
        TABS
@@ -104,42 +154,40 @@ custom_css = """
        CHAT INPUT BOX - MODIFIED
        ============================================ */
     /* Target chat input textarea - more aggressive selectors */
-    textarea[placeholder="Type a message..."],
     textarea[data-testid*="textbox"]:not(#file-list-box textarea) {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
     }
     
-    textarea[placeholder="Type a message..."]:focus {
+    textarea[data-testid*="textbox"]:not(#file-list-box textarea):focus {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
     }
     
     /* Target the wrapper/container of chat input */
-    .gr-text-input:has(textarea[placeholder="Type a message..."]),
     [class*="chatbot"] + * [data-testid="textbox"],
-    form:has(textarea[placeholder="Type a message..."]) > div {
+    form:has(textarea[data-testid*="textbox"]) > div {
         background: transparent !important;
         border: none !important;
         gap: 12px !important;
     }
     
     /* Remove background from submit button in chat */
-    form:has(textarea[placeholder="Type a message..."]) button,
+    form:has(textarea[data-testid*="textbox"]) button,
     [class*="chatbot"] ~ * button[type="submit"] {
         background: transparent !important;
         border: none !important;
         padding: 8px !important;
     }
     
-    form:has(textarea[placeholder="Type a message..."]) button:hover {
+    form:has(textarea[data-testid*="textbox"]) button:hover {
         background: rgba(59, 130, 246, 0.1) !important;
     }
     
     /* Add spacing to the form container */
-    form:has(textarea[placeholder="Type a message..."]) {
+    form:has(textarea[data-testid*="textbox"]) {
         gap: 12px !important;
         display: flex !important;
     }

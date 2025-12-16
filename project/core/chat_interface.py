@@ -8,7 +8,7 @@ class ChatInterface:
     def chat(self, message, history):
 
         if not self.rag_system.agent_graph:
-            return "⚠️ System not initialized!"
+            return "⚠️ 系统尚未初始化，请稍后重试。"
             
         try:
             result = self.rag_system.agent_graph.invoke(
@@ -18,7 +18,7 @@ class ChatInterface:
             return result["messages"][-1].content
             
         except Exception as e:
-            return f"❌ Error: {str(e)}"
+            return f"❌ 发生错误：{str(e)}"
     
     def clear_session(self):
         self.rag_system.reset_thread()

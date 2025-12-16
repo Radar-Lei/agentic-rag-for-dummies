@@ -3,6 +3,7 @@ import os
 import gradio as gr
 from ui.css import custom_css
 from ui.gradio_app import create_gradio_ui
+from pathlib import Path
 
 
 def _print_ocr_status() -> None:
@@ -26,18 +27,20 @@ def _print_ocr_status() -> None:
         tessdata_ok = False
 
     if cv2_ok and tessdata_ok:
-        print(f"OCR enabled (tessdata: {tessdata_path})")
+        print(f"OCR 已启用（tessdata：{tessdata_path}）")
         return
 
-    print("OCR disabled.")
+    print("OCR 未启用。")
     if not cv2_ok:
-        print("To enable OCR: `pip install opencv-python-headless`")
+        print("如需启用 OCR：`pip install opencv-python-headless`")
     if not tessdata_ok:
-        print("To enable OCR on macOS: `brew install tesseract` (then restart the app)")
+        print("macOS 启用 OCR：`brew install tesseract`（安装后重启应用）")
 
 
 if __name__ == "__main__":
     _print_ocr_status()
     demo = create_gradio_ui()
-    print("\n🚀 Launching RAG Assistant...")
-    demo.launch(css=custom_css)
+    print("\n启动：智慧问答助手 ...")
+    repo_root = Path(__file__).resolve().parent.parent
+    favicon = repo_root / "assets" / "logo_replace.png"
+    demo.launch(css=custom_css, favicon_path=favicon)
