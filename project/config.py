@@ -35,7 +35,7 @@ DENSE_MODEL = "sentence-transformers/all-mpnet-base-v2"
 SPARSE_MODEL = "Qdrant/bm25"
 
 # --- DeepSeek API Configuration ---
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-b9c929a18b99473788803183b4c49108").strip()
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "").strip()
 DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").strip()
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat").strip()
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
