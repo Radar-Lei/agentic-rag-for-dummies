@@ -18,6 +18,7 @@ class RAGSystem:
         self.parent_store = ParentStoreManager()
         self.chunker = DocumentChuncker()
         self.agent_graph = None
+        self.llm = None
         self.thread_id = str(uuid.uuid4())
         
     def initialize(self):
@@ -78,6 +79,7 @@ class RAGSystem:
             api_key=config.DEEPSEEK_API_KEY,
             base_url=config.DEEPSEEK_BASE_URL,
         )
+        self.llm = llm
         tools = ToolFactory(collection).create_tools()
         self.agent_graph = create_agent_graph(llm, tools)
 
@@ -103,7 +105,11 @@ class RAGSystem:
         # endregion agent log
         
     def get_config(self):
-        return {"configurable": {"thread_id": self.thread_id}}
+        # recursion_limit: LangGraph 每次 invoke 的最大“步数/递归”上限（默认 25，容易触发）
+        return {
+            "configurable": {"thread_id": self.thread_id},
+            "recursion_limit": getattr(config, "LANGGRAPH_RECURSION_LIMIT", 50),
+        }
     
     def reset_thread(self):
         try:

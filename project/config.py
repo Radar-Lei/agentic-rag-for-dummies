@@ -40,6 +40,10 @@ DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").s
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat").strip()
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
 
+# --- LangGraph Configuration ---
+# 防止 agent 工具循环在复杂问题上过早触发默认递归上限（默认 25）
+LANGGRAPH_RECURSION_LIMIT = int(os.getenv("LANGGRAPH_RECURSION_LIMIT", "50"))
+
 # --- Text Splitter Configuration ---
 CHILD_CHUNK_SIZE = 500
 CHILD_CHUNK_OVERLAP = 100
